@@ -91,9 +91,9 @@ class MunicipioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $municipio = municipio::find($id);
+        $municipio = Municipio::find($id);
 
-        $municipio->comu_nomb = $request->name;
+        $municipio->muni_nomb = $request->name;
         $municipio->depa_codi = $request->code;
         $municipio->save();
 
