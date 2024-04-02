@@ -91,13 +91,14 @@ class PaisController extends Controller
         $pais = Pais::find($id);
 
         $pais->pais_nomb = $request->name;
-        $pais->pais_codi = $request->code;
+        //$pais->pais_codi = strtoupper(substr($pais->pais_nomb, 0, 3));
+        $pais->pais_capi = $request->code;
         $pais->save();
 
-        $pais = DB::table('tb_pais')
+        $paises = DB::table('tb_pais')
         ->select('*')->get();
 
-        return view('pais.index',['pais'=> $pais]);
+        return view('pais.index',['paises'=> $paises]);
     }
 
     /**
