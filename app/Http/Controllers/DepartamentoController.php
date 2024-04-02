@@ -29,10 +29,10 @@ class DepartamentoController extends Controller
      */
     public function create()
     {
-        $departamentos = DB::table('tb_pais')
+        $paises = DB::table('tb_pais')
             ->orderBy('pais_nomb')
             ->get();
-            return view("departamento.new",["departamentos"=>$departamentos]);
+            return view("departamento.new",["paises"=>$paises]);
     }
 
     /**
@@ -76,10 +76,10 @@ class DepartamentoController extends Controller
     public function edit($id)
     {
         $departamento = Departamento::find($id);
-        $departamentos = DB::table('tb_pais')
+        $paises = DB::table('tb_pais')
             ->orderBy('pais_nomb')
             ->get();
-        return view('departamento.edit',['departamento'=> $departamento,'departamentos'=> $departamentos]);
+        return view('departamento.edit',['departamento'=> $departamento,'paises'=> $paises]);
     }
 
     /**
