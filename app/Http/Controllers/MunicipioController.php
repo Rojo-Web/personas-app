@@ -75,7 +75,7 @@ class MunicipioController extends Controller
      */
     public function edit($id)
     {
-        $municipio = municipio::find($id);
+        $municipio = Municipio::find($id);
         $departamentos = DB::table('tb_departamento')
             ->orderBy('depa_nomb')
             ->get();
@@ -113,7 +113,7 @@ class MunicipioController extends Controller
      */
     public function destroy($id)
     {
-        $municipio = municipio::find($id);
+        $municipio = Municipio::find($id);
         $municipio->delete();
 
         $municipios = DB::table('tb_municipio')

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ComunaController;
 use App\Http\Controllers\MunicipioController;
+use App\Http\Controllers\DepartamentoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,3 +36,12 @@ Route::get('/municipios/create', [MunicipioController::class,'create'])->name('m
 Route::delete('/municipios/{municipio}', [MunicipioController::class,'destroy'])->name('municipios.destroy');
 Route::put('/municipios/{municipio}', [MunicipioController::class,'update'])->name('municipios.update');
 Route::get('/municipios/{municipio}/edit', [MunicipioController::class,'edit'])->name('municipios.edit');
+
+
+//departamento
+Route::get('/departamentos', [DepartamentoController::class,'index'])->name('departamentos.index');
+Route::post('/departamentos', [DepartamentoController::class,'store'])->name('departamentos.store');
+Route::get('/departamentos/create', [DepartamentoController::class,'create'])->name('departamentos.create');
+Route::delete('/departamentos/{departamento}', [DepartamentoController::class,'destroy'])->name('departamentos.destroy');
+Route::put('/departamentos/{departamento}', [DepartamentoController::class,'update'])->name('departamentos.update');
+Route::get('/departamentos/{departamento}/edit', [DepartamentoController::class,'edit'])->name('departamentos.edit');
