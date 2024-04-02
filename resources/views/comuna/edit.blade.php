@@ -19,12 +19,12 @@
             <!-- genera un token oculto -->
             <div class="mb-3">
                 <label for="id" class="form-label">code</label>
-                <input type="text" class="form-control" id="id" aria-describedby="idHelp" name="id" disabled="disabled">
+                <input type="text" class="form-control" id="id" aria-describedby="idHelp" name="id" disabled="disabled" value="{{$comuna->comu_codi}}">
                 <div id="idHelp" class="form-text">Comuna code</div>
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Comuna</label>
-                <input type="text" class="form-control" id="name" aria-describedby="nameHelp" name="name" placeholder="Comuna name.">
+                <input type="text" class="form-control" id="name" aria-describedby="nameHelp" name="name" placeholder="Comuna name." value="{{$comuna->comu_nomb}}">
             </div>
 
 
@@ -32,7 +32,11 @@
             <select class="form-select" id="municipality" name="code" required>
                 <Option selected disabled value="">Elije uno</Option>
                 @foreach ($municipios as $municipio)
-                    <option value="{{$municipio->muni_codi}}"> {{$municipio->muni_nomb}} </option>
+                    @if($municipio->muni_codi == $comuna->muni_codi)
+                    <option selected value="{{$municipio->muni_codi}}"> {{$municipio->muni_nomb}} </option>
+                    @else
+                        <option value="{{$municipio->muni_codi}}"> {{$municipio->muni_nomb}} </option>
+                    @endif
                 @endforeach
             </select>
 
