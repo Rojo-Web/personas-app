@@ -43,7 +43,14 @@
             @endforeach
         </tbody>
     </table>
+    <!-- Mostrar enlaces de paginación -->
+    @if ($departamentos->previousPageUrl())
+    <a href="{{ $departamentos->previousPageUrl() }}" class="btn btn-primary">Previous</a>
+@endif
 
+@if ($departamentos->nextPageUrl())
+    <a href="{{ $departamentos->nextPageUrl() }}" class="btn btn-primary">Next</a>
+@endif
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

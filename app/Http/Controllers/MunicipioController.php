@@ -18,7 +18,8 @@ class MunicipioController extends Controller
         //$municipios = municipio::all();
         $municipios = DB::table('tb_municipio')
             ->join('tb_departamento','tb_municipio.depa_codi','=','tb_departamento.depa_codi')
-            ->select('tb_municipio.*',"tb_departamento.depa_nomb")->get();//->paginate(25);
+            ->select('tb_municipio.*',"tb_departamento.depa_nomb")->paginate(25);
+
         return view('municipio.index',['municipios' => $municipios]);
     }
 
@@ -49,11 +50,10 @@ class MunicipioController extends Controller
         $municipio->save();
 
         $municipios = DB::table('tb_municipio')
-            ->join('tb_departamento','tb_municipio.depa_codi','=','tb_departamento.depa_codi')
-            ->select('tb_municipio.*',"tb_departamento.depa_nomb")
-            ->get();
-
-        return view('municipio.index',['municipios'=> $municipios]);
+        ->join('tb_departamento','tb_municipio.depa_codi','=','tb_departamento.depa_codi')
+        ->select('tb_municipio.*',"tb_departamento.depa_nomb")->paginate(25);
+        return redirect()->route("municipios.index", [$municipios]);
+        //return view('municipio.index',['municipios'=> $municipios]);
     }
 
     /**
@@ -99,10 +99,9 @@ class MunicipioController extends Controller
 
         $municipios = DB::table('tb_municipio')
         ->join('tb_departamento','tb_municipio.depa_codi','=','tb_departamento.depa_codi')
-        ->select('tb_municipio.*',"tb_departamento.depa_nomb")
-        ->get();
-
-        return view('municipio.index',['municipios'=> $municipios]);
+        ->select('tb_municipio.*',"tb_departamento.depa_nomb")->paginate(25);
+        return redirect()->route("municipios.index", [$municipios]);
+        //return view('municipio.index',['municipios'=> $municipios]);
     }
 
     /**
@@ -118,9 +117,9 @@ class MunicipioController extends Controller
 
         $municipios = DB::table('tb_municipio')
         ->join('tb_departamento','tb_municipio.depa_codi','=','tb_departamento.depa_codi')
-        ->select('tb_municipio.*',"tb_departamento.depa_nomb")
-        ->get();
+        ->select('tb_municipio.*',"tb_departamento.depa_nomb")->paginate(25);
 
-        return view('municipio.index',['municipios'=> $municipios]);
+        return redirect()->route("municipios.index", [$municipios]);
+    //return view('municipio.index',['municipios'=> $municipios]);
     }
 }

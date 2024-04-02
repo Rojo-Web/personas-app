@@ -18,7 +18,7 @@ class DepartamentoController extends Controller
         //$departamentos = departamento::all();
         $departamentos = DB::table('tb_departamento')
             ->join('tb_pais','tb_departamento.pais_codi','=','tb_pais.pais_codi')
-            ->select('tb_departamento.*',"tb_pais.pais_nomb")->get();//->paginate(25);
+            ->select('tb_departamento.*',"tb_pais.pais_nomb")->paginate(25);//->paginate(25);
         return view('departamento.index',['departamentos' => $departamentos]);
     }
 
@@ -51,9 +51,9 @@ class DepartamentoController extends Controller
         $departamentos = DB::table('tb_departamento')
             ->join('tb_pais','tb_departamento.pais_codi','=','tb_pais.pais_codi')
             ->select('tb_departamento.*',"tb_pais.pais_nomb")
-            ->get();
-
-        return view('departamento.index',['departamentos'=> $departamentos]);
+            ->paginate(25);
+        return redirect()->route("departamentos.index", [$departamentos]);
+        //return view('departamento.index',['departamentos'=> $departamentos]);
     }
 
     /**
@@ -100,9 +100,9 @@ class DepartamentoController extends Controller
         $departamentos = DB::table('tb_departamento')
         ->join('tb_pais','tb_departamento.pais_codi','=','tb_pais.pais_codi')
         ->select('tb_departamento.*',"tb_pais.pais_nomb")
-        ->get();
-
-        return view('departamento.index',['departamentos'=> $departamentos]);
+        ->paginate(25);
+        return redirect()->route("departamentos.index", [$departamentos]);
+        //return view('departamento.index',['departamentos'=> $departamentos]);
     }
 
     /**
@@ -119,8 +119,8 @@ class DepartamentoController extends Controller
         $departamentos = DB::table('tb_departamento')
         ->join('tb_pais','tb_departamento.pais_codi','=','tb_pais.pais_codi')
         ->select('tb_departamento.*',"tb_pais.pais_nomb")
-        ->get();
-
-        return view('departamento.index',['departamentos'=> $departamentos]);
+        ->paginate(25);
+        return redirect()->route("departamentos.index", [$departamentos]);
+        //return view('departamento.index',['departamentos'=> $departamentos]);
     }
 }

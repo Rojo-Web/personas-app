@@ -43,6 +43,15 @@
             @endforeach
         </tbody>
     </table>
+    <!-- Mostrar enlaces de paginación -->
+    @if ($municipios->previousPageUrl())
+    <a href="{{ $municipios->previousPageUrl() }}" class="btn btn-primary">Previous</a>
+@endif
+
+@if ($municipios->nextPageUrl())
+    <a href="{{ $municipios->nextPageUrl() }}" class="btn btn-primary">Next</a>
+@endif
+
 
     </div>
 
