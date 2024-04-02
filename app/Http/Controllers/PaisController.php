@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Ramsey\Uuid\Uuid;
 use App\Models\Pais;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,10 +28,10 @@ class PaisController extends Controller
      */
     public function create()
     {
-        // $paises = DB::table('tb_pais')
-        //     ->orderBy('pais_nomb')
-        //     ->get();
-        //     return view("pais.new",["paises"=>$paises]);
+        $paises = DB::table('tb_pais')
+            ->orderBy('pais_nomb')
+            ->get();
+            return view("pais.new",["paises"=>$paises]);
     }
 
     /**
@@ -44,7 +44,8 @@ class PaisController extends Controller
     {
         $paises = new Pais();
         $paises->pais_nomb = $request->name;
-        $paises->pais_codi = $request->code;
+        $paises->pais_codi = strtoupper(substr($paises->pais_nomb, 0, 3));
+        $paises->pais_capi = $request->code;
         $paises->save();
 
         $paises = DB::table('tb_pais')->select('*')->get();
@@ -110,9 +111,9 @@ class PaisController extends Controller
         $pais = Pais::find($id);
         $pais->delete();
 
-        $pais = DB::table('tb_pais')
+        $paises = DB::table('tb_pais')
         ->select('*')->get();
 
-        return view('pais.index',['pais'=> $pais]);
+        return view('pais.index',['paises'=> $paises]);
     }
 }
