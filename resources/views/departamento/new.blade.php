@@ -27,11 +27,15 @@
             </div>
 
 
-            <label for="pais">Paises</label>
-            <select class="form-select" id="pais" name="code" required>
-                <Option selected disabled value="">Elije uno</Option>
-                @foreach ($paises as $pais)
-                    <option value="{{$pais->pais_codi}}"> {{$pais->pais_nomb}} </option>
+            <label for="capital">Capital</label>
+            <select class="form-select" id="capital" name="code" required>
+                <option selected disabled value="">Choose One...</option>
+                @foreach ($municipios as $municipio)
+                    @if ($municipio->muni_codi == $pais->pais_capi)
+                        <option selected value="{{ $municipio->muni_codi }}"> {{ $municipio->muni_nomb }} </option>
+                    @else
+                        <option value="{{ $municipio->muni_codi }}"> {{ $municipio->muni_nomb }} </option>
+                    @endif
                 @endforeach
             </select>
 

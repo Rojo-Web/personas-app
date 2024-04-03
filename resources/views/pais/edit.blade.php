@@ -13,25 +13,32 @@
   <body>
     <div class="container">
         <h1>Update pais</h1>
-        <form method="POST" action="{{route('paises.update',['pais'=> $paises->pais_codi])}}">
+        <form method="POST" action="{{route('paises.update',['pais'=> $pais->pais_codi])}}">
             @method('put')
             @csrf
             <!-- genera un token oculto -->
             <div class="mb-3">
                 <label for="id" class="form-label">code</label>
-                <input type="text" class="form-control" id="id" aria-describedby="idHelp" name="id" disabled="disabled" value="{{$paises->pais_codi}}">
+                <input type="text" class="form-control" id="id" aria-describedby="idHelp" name="id" disabled="disabled" value="{{$pais->pais_codi}}">
                 <div id="idHelp" class="form-text">pais code</div>
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">pais</label>
-                <input type="text" class="form-control" id="name" aria-describedby="nameHelp" name="name" placeholder="pais name." value="{{$paises->pais_nomb}}">
+                <input type="text" class="form-control" id="name" aria-describedby="nameHelp" name="name" placeholder="pais name." value="{{$pais->pais_nomb}}">
             </div>
 
 
-            <div class="mb-3">
-                <label for="code" class="form-label">pais_code</label>
-                <input type="text" class="form-control" id="code" aria-describedby="codeHelp" name="code" placeholder="pais code." value="{{$paises->pais_capi}}">
-            </div>
+            <label for="municipio">Municipios</label>
+            <select class="form-select" id="municipio" name="code" required>
+                <Option selected disabled value="">Elije uno</Option>
+                @foreach ($municipios as $municipio)
+                    @if($pais->pais_capi == $municipio->muni_codi)
+                    <option selected value="{{$municipio->muni_codi}}"> {{$municipio->muni_nomb}} </option>
+                    @else
+                        <option value="{{$municipio->muni_codi}}"> {{$municipio->muni_nomb}} </option>
+                    @endif
+                @endforeach
+            </select>
 
             <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Update</button>

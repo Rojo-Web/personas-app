@@ -27,10 +27,13 @@
             </div>
 
 
-            <div class="mb-3">
-                <label for="code" class="form-label">codigo pais</label>
-                <input type="text" class="form-control" id="code_pais" aria-describedby="nameHelp" name="code" placeholder="Codigo pais">
-            </div>
+            <label for="capital">Capital</label>
+            <select class="form-select" id="capital" name="code" required>
+                <option selected disabled value="">Choose One...</option>
+                @foreach ($municipios as $municipio)
+                    <option value="{{ $municipio->muni_codi }}"> {{ $municipio->muni_nomb }} </option>
+                @endforeach
+            </select>
 
             <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Save</button>

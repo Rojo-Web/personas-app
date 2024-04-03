@@ -21,7 +21,7 @@
             <tr>
             <th scope="col">Code</th>
             <th scope="col">paises</th>
-            <th scope="col">Pais_Code</th>
+            <th scope="col">Capital</th>
             <th scope="col">Actions</th>
             </tr>
         </thead>

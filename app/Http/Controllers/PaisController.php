@@ -17,7 +17,8 @@ class PaisController extends Controller
     {
         //$pais = pais::all();
         $paises = DB::table('tb_pais')
-            ->select('*')->paginate(25);//->paginate(25);
+        ->join('tb_municipio', 'tb_pais.pais_capi', '=', 'tb_municipio.muni_codi')
+        ->select('tb_pais.*', 'tb_municipio.muni_nomb')->paginate(25);
         return view('pais.index',['paises' => $paises]);
     }
 
@@ -28,10 +29,10 @@ class PaisController extends Controller
      */
     public function create()
     {
-        $paises = DB::table('tb_pais')
-            ->orderBy('pais_nomb')
-            ->get();
-            return view("pais.new",["paises"=>$paises]);
+        $municipios = DB::table('tb_municipio')
+        ->orderBy('muni_nomb')
+        ->get();
+            return view("pais.new",['municipios' => $municipios]);
     }
 
     /**
@@ -48,7 +49,9 @@ class PaisController extends Controller
         $paises->pais_capi = $request->code;
         $paises->save();
 
-        $paises = DB::table('tb_pais')->select('*')->paginate(25);
+        $paises = DB::table('tb_pais')
+        ->join('tb_municipio', 'tb_pais.pais_capi', '=', 'tb_municipio.muni_codi')
+        ->select('tb_pais.*', 'tb_municipio.muni_nomb')->paginate(25);
         return redirect()->route("paises.index", [$paises]);
         //return view('pais.index',['paises'=> $paises]);
     }
@@ -72,11 +75,11 @@ class PaisController extends Controller
      */
     public function edit($id)
     {
-        $paises = Pais::find($id);
-        // $paises = DB::table('tb_pais')
-        //     ->orderBy('pais_nomb')
-        //     ->get();
-        return view('pais.edit',['paises'=> $paises]);
+        $pais = Pais::find($id);
+         $municipios = DB::table('tb_municipio')
+         ->orderBy('muni_nomb')
+         ->get();
+        return view('pais.edit',['pais' => $pais, 'municipios' => $municipios]);
     }
 
     /**
@@ -96,7 +99,8 @@ class PaisController extends Controller
         $pais->save();
 
         $paises = DB::table('tb_pais')
-        ->select('*')->paginate(25);
+        ->join('tb_municipio', 'tb_pais.pais_capi', '=', 'tb_municipio.muni_codi')
+        ->select('tb_pais.*', 'tb_municipio.muni_nomb')->paginate(25);
         return redirect()->route("paises.index", [$paises]);
         //return view('pais.index',['paises'=> $paises]);
     }
@@ -113,7 +117,8 @@ class PaisController extends Controller
         $pais->delete();
 
         $paises = DB::table('tb_pais')
-        ->select('*')->paginate(25);
+        ->join('tb_municipio', 'tb_pais.pais_capi', '=', 'tb_municipio.muni_codi')
+        ->select('tb_pais.*', 'tb_municipio.muni_nomb')->paginate(25);
         return redirect()->route("paises.index", [$paises]);
         //return view('pais.index',['paises'=> $paises]);
     }
